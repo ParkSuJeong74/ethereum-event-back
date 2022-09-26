@@ -30,7 +30,7 @@ async function bootstrap() {
     Logger.log(
       `Application running on port ${PORT}, http://localhost:${PORT}/api`,
     );
-    Logger.log(`Go to API Docs : http://localhost:${PORT}/api/swagger`);
+    Logger.log(`Go to API Docs : http://localhost:${PORT}/api/docs`);
   }
 }
 bootstrap();

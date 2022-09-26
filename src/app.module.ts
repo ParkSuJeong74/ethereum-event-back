@@ -21,8 +21,9 @@ import { SubscriptionsModule } from './subscriptions/subscriptions.module';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [__dirname + '/commons/entity/*.entity{.ts,.js}'],
       synchronize: true,
+      // autoLoadEntities: true,
     }),
   ],
 })
