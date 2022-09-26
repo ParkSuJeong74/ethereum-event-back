@@ -16,7 +16,7 @@ export class SubscriptionsService {
     private readonly topicsRepository: Repository<Topic>,
   ) {}
 
-  async createSubscriptions(
+  async createSubscription(
     createSubscriptionsRequestDto: CreateSubscriptionsRequestDto,
   ): Promise<CreateSubscriptionsResponseDto> {
     const { topics, contractAddress } = createSubscriptionsRequestDto;

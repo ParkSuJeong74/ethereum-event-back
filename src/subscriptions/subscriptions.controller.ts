@@ -37,10 +37,10 @@ export class SubscriptionsController {
     description: '서버에 이미 존재하는 구독인 경우',
   })
   @ApiBody({ type: CreateSubscriptionsRequestDto })
-  async createUser(
+  async createSubscription(
     @Body() createSubscriptionsRequestDto: CreateSubscriptionsRequestDto,
   ): Promise<CreateSubscriptionsResponseDto> {
-    return await this.subscriptionsService.createSubscriptions(
+    return await this.subscriptionsService.createSubscription(
       createSubscriptionsRequestDto,
     );
   }
