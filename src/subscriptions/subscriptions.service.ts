@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Subscription, Topic } from '../commons/entity';
+import { Subscription } from '../commons/entity';
 import {
   CreateSubscriptionsRequestDto,
   CreateSubscriptionsResponseDto,
@@ -12,8 +12,6 @@ export class SubscriptionsService {
   constructor(
     @InjectRepository(Subscription)
     private readonly subscriptionsRepository: Repository<Subscription>,
-    @InjectRepository(Topic)
-    private readonly topicsRepository: Repository<Topic>,
   ) {}
 
   async createSubscription(
