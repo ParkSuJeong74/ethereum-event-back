@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { validation } from './commons/utils';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
+import { EthersModule } from './ethers/ethers.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { SubscriptionsModule } from './subscriptions/subscriptions.module';
       synchronize: true,
     }),
     SubscriptionsModule,
+    EthersModule,
   ],
 })
 export class AppModule {}

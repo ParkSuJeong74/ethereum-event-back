@@ -24,7 +24,7 @@ export class CreateSubscriptionsResponseDto {
    * 구독한 이벤트의 토픽
    */
   @IsArray()
-  topics: Topic[];
+  topics: string[];
   /**
    * 이벤트를 구독한 스마트 컨트랙트의 주소
    */
