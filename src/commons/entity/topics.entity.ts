@@ -1,21 +1,24 @@
 import {
+  BaseEntity,
   Column,
   Entity,
-  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
 import { Subscription } from './subscriptions.entity';
 
 @Entity()
-export class Topic {
+@Unique(['id'])
+export class Topic extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   topic: string;
 
-  @ManyToOne(() => Subscription, (subscription) => subscription.topic)
-  @JoinColumn()
+  @ManyToOne(() => Subscription, (subscription) => subscription.topics, {
+    cascade: true,
+  })
   subscription: Subscription;
 }

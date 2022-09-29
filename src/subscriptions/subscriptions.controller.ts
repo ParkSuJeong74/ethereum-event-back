@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiBody,
@@ -10,6 +10,7 @@ import {
 import {
   CreateSubscriptionsRequestDto,
   CreateSubscriptionsResponseDto,
+  ListSubscriptionsResponseDto,
 } from './dto';
 import { SubscriptionsService } from './subscriptions.service';
 
@@ -39,9 +40,26 @@ export class SubscriptionsController {
   @ApiBody({ type: CreateSubscriptionsRequestDto })
   async createSubscription(
     @Body() createSubscriptionsRequestDto: CreateSubscriptionsRequestDto,
-  ): Promise<CreateSubscriptionsResponseDto> {
+  ) {
+    //: Promise<CreateSubscriptionsResponseDto>
+
     return await this.subscriptionsService.createSubscription(
       createSubscriptionsRequestDto,
     );
+  }
+
+  @HttpCode(200)
+  @Get()
+  @ApiOperation({
+    summary: '구독 추가 API',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '구독 목록 조회 성공',
+    type: ListSubscriptionsResponseDto,
+  })
+  async getSubscriptions() {
+    //: Promise<ListSubscriptionsResponseDto>
+    return await this.subscriptionsService.getSubscriptions();
   }
 }

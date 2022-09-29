@@ -2,15 +2,19 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { Topic } from '.';
 
 @Entity()
+@Unique(['id'])
 export class Subscription {
+  constructor(contractAddress?: string) {
+    this.contractAddress = contractAddress;
+  }
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -18,12 +22,11 @@ export class Subscription {
   contractAddress: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt?: Date;
 
   @OneToMany(() => Topic, (topic) => topic.subscription)
-  @JoinColumn()
-  topic: Topic[];
+  topics?: Topic[];
 }

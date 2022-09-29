@@ -16,15 +16,13 @@ import { SubscriptionsModule } from './subscriptions/subscriptions.module';
       isGlobal: true,
       validationSchema: validation,
     }),
-
-    SubscriptionsModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db',
       entities: [__dirname + '/commons/entity/*.entity{.ts,.js}'],
       synchronize: true,
-      // autoLoadEntities: true,
     }),
+    SubscriptionsModule,
   ],
 })
 export class AppModule {}

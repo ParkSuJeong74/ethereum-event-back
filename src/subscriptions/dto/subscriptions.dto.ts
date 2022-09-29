@@ -1,4 +1,5 @@
 import { IsArray, IsDate, IsString } from 'class-validator';
+import { Topic } from 'src/commons/entity';
 
 export class CreateSubscriptionsRequestDto {
   /**
@@ -23,7 +24,7 @@ export class CreateSubscriptionsResponseDto {
    * 구독한 이벤트의 토픽
    */
   @IsArray()
-  topics: string[];
+  topics: Topic[];
   /**
    * 이벤트를 구독한 스마트 컨트랙트의 주소
    */
@@ -39,4 +40,15 @@ export class CreateSubscriptionsResponseDto {
    */
   @IsDate()
   updatedAt: Date;
+}
+
+class SubscriptionInfo {
+  id: number;
+  topics: Topic[];
+  contractAddress: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+export class ListSubscriptionsResponseDto {
+  subscriptions: SubscriptionInfo[];
 }
