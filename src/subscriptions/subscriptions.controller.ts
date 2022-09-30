@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Post } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiBody,
@@ -33,7 +33,13 @@ export class SubscriptionsController {
     description: '서버에 이미 존재하는 구독인 경우',
   })
   @ApiBody({ type: CreateSubscriptionsRequestDto })
-  async createSubscription() {}
+  async createSubscription(
+    @Body() createSubscriptionsRequestDto: CreateSubscriptionsRequestDto,
+  ) {
+    return await this.subscriptionsService.createSubscription(
+      createSubscriptionsRequestDto,
+    );
+  }
 
   @HttpCode(200)
   @Get()
@@ -44,10 +50,12 @@ export class SubscriptionsController {
     status: 200,
     description: '구독 목록 조회 성공',
   })
-  async getSubscriptions() {}
+  async getSubscriptions() {
+    return await this.subscriptionsService.getSubscriptions();
+  }
 
   @HttpCode(200)
-  @Get()
+  @Get(':subscription-id')
   @ApiOperation({
     summary: '구독 정보 조회 API',
   })
@@ -55,10 +63,12 @@ export class SubscriptionsController {
     status: 200,
     description: '구독 정보 조회 성공',
   })
-  async getSubscriptionInfo() {}
+  async getSubscriptionInfo() {
+    return await this.subscriptionsService.getSubscriptionInfo();
+  }
 
   @HttpCode(200)
-  @Get()
+  @Delete(':subscription-id')
   @ApiOperation({
     summary: '구독 삭제 조회 API',
   })
@@ -66,10 +76,12 @@ export class SubscriptionsController {
     status: 200,
     description: '구독 삭제 조회 성공',
   })
-  async deleteSubscription() {}
+  async deleteSubscription() {
+    return await this.subscriptionsService.deleteSubscription();
+  }
 
   @HttpCode(200)
-  @Get()
+  @Get(':subscription-id')
   @ApiOperation({
     summary: '구독에서 발생한 로그 조회 API',
   })
@@ -77,5 +89,7 @@ export class SubscriptionsController {
     status: 200,
     description: '구독에서 발생한 로그 조회 성공',
   })
-  async getSubscriptionLog() {}
+  async getSubscriptionLog() {
+    return await this.subscriptionsService.getSubscriptionLog();
+  }
 }

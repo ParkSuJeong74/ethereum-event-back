@@ -13,7 +13,5 @@ export class EthersService {
     );
   }
 
-  async addSubscription(address: string, topics: string[]) {
-    const contract = new ethers.Contract(address, [], this.provider);
-  }
+  async addSubscription(contractAddress: string, topic: string[]) {}
 }
