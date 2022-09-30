@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiBody,
@@ -7,11 +7,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import {
-  CreateSubscriptionsRequestDto,
-  CreateSubscriptionsResponseDto,
-  ListSubscriptionsResponseDto,
-} from './dto';
+import { CreateSubscriptionsRequestDto } from './dto';
 import { SubscriptionsService } from './subscriptions.service';
 
 @ApiTags('구독 관리 API')
@@ -27,7 +23,6 @@ export class SubscriptionsController {
   @ApiResponse({
     status: 201,
     description: '구독 성공',
-    type: CreateSubscriptionsResponseDto,
   })
   @ApiBadRequestResponse({
     status: 400,
@@ -38,28 +33,49 @@ export class SubscriptionsController {
     description: '서버에 이미 존재하는 구독인 경우',
   })
   @ApiBody({ type: CreateSubscriptionsRequestDto })
-  async createSubscription(
-    @Body() createSubscriptionsRequestDto: CreateSubscriptionsRequestDto,
-  ) {
-    //: Promise<CreateSubscriptionsResponseDto>
-
-    return await this.subscriptionsService.createSubscription(
-      createSubscriptionsRequestDto,
-    );
-  }
+  async createSubscription() {}
 
   @HttpCode(200)
   @Get()
   @ApiOperation({
-    summary: '구독 추가 API',
+    summary: '구독 목록 조회 API',
   })
   @ApiResponse({
     status: 200,
     description: '구독 목록 조회 성공',
-    type: ListSubscriptionsResponseDto,
   })
-  async getSubscriptions() {
-    //: Promise<ListSubscriptionsResponseDto>
-    return await this.subscriptionsService.getSubscriptions();
-  }
+  async getSubscriptions() {}
+
+  @HttpCode(200)
+  @Get()
+  @ApiOperation({
+    summary: '구독 정보 조회 API',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '구독 정보 조회 성공',
+  })
+  async getSubscriptionInfo() {}
+
+  @HttpCode(200)
+  @Get()
+  @ApiOperation({
+    summary: '구독 삭제 조회 API',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '구독 삭제 조회 성공',
+  })
+  async deleteSubscription() {}
+
+  @HttpCode(200)
+  @Get()
+  @ApiOperation({
+    summary: '구독에서 발생한 로그 조회 API',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '구독에서 발생한 로그 조회 성공',
+  })
+  async getSubscriptionLog() {}
 }
